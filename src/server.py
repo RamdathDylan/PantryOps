@@ -2,6 +2,7 @@ from flask import Flask
 from flask_restful import Resource, Api
 from api.health import Health
 from api.helloWorld import HelloWorld
+from api.managment import DbPing
 
 def create_app():
     app = Flask(__name__)
@@ -9,7 +10,7 @@ def create_app():
 
     api.add_resource(Health, "/")
     api.add_resource(HelloWorld, "/hello")
-
+    api.add_resource(DbPing, "/managment/dbping")
     return app
 
 if __name__ == '__main__':
