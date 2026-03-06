@@ -19,27 +19,18 @@ This project serves as a practical exploration of:
 ## Architecture
 
 Frontend:
-<<<<<<< HEAD
-=======
 
->>>>>>> a375798 (Updating read me.)
 - React (component-based UI)
 - REST API integration
 
 Backend:
-<<<<<<< HEAD
-=======
 
->>>>>>> a375798 (Updating read me.)
 - Flask (Blueprint-based modular design)
 - Service layer for business logic
 - PostgreSQL persistence layer
 
 Database:
-<<<<<<< HEAD
-=======
 
->>>>>>> a375798 (Updating read me.)
 - Relational schema with foreign key constraints
 - Transactional integrity for meal service workflows
 
