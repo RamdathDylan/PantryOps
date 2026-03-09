@@ -8,7 +8,7 @@ def create_app():
     app = Flask(__name__)
     api = Api(app)
 
-    api.add_resource(Health, "/")
+    api.add_resource(Health, "/health")
     api.add_resource(HelloWorld, "/hello")
     api.add_resource(DbPing, "/managment/dbping")
     return app
