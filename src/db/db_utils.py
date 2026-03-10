@@ -1,3 +1,4 @@
+import os
 import psycopg2
 import yaml
 
@@ -9,11 +10,11 @@ def get_db_config():
 def get_conn():
     db = get_db_config()
     return psycopg2.connect(
-        host=db["host"],
-        port=db["port"],
-        dbname=db["database"],
-        user=db["user"],
-        password=db["password"],
+        host=os.getenv("POSTGRES_HOST"),
+        port=os.getenv("POSTGRES_PORT"),
+        database=os.getenv("POSTGRES_DB"),
+        user=os.getenv("POSTGRES_USER"),
+        password=os.getenv("POSTGRES_PASSWORD"),
     )
 
 def exec_get_one(sql, params=None):
