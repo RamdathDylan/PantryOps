@@ -1,8 +1,9 @@
 from flask import Flask
 from flask_restful import Resource, Api
-from api.health import Health
-from api.helloWorld import HelloWorld
-from api.managment import DbPing
+
+from src.api.managment import DbPing
+from src.api.health import Health
+from src.api.helloWorld import HelloWorld
 
 def create_app():
     app = Flask(__name__)
