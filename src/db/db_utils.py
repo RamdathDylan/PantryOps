@@ -4,6 +4,15 @@ import yaml
 
 
 def get_db_config():
+    if os.getenv("POSTGRES_DB"):
+        return {
+            "host": os.getenv("POSTGRES_HOST", "127.0.0.1"),
+            "port": int(os.getenv("POSTGRES_PORT", "5432")),
+            "database": os.getenv("POSTGRES_DB"),
+            "user": os.getenv("POSTGRES_USER"),
+            "password": os.getenv("POSTGRES_PASSWORD"),
+        }
+
     with open("config/db.yml", "r") as f:
         return yaml.safe_load(f)
 
