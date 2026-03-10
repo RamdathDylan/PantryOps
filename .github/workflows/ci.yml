@@ -61,10 +61,17 @@ jobs:
 
       - name: Wait for Flask server
         run: |
-          until curl -f http://127.0.0.1:5000/health; do
-            echo "Waiting for Flask..."
+          for i in {1..5}; do
+            echo "Attempt $i: checking Flask health..."
+            if curl -f http://127.0.0.1:5000/health; then
+              echo "Flask is up!"
+              exit 0
+            fi
             sleep 2
           done
+
+          echo "Flask failed to start after 5 attempts"
+          exit 1
 
       - name: Run tests
         run: |
