@@ -55,6 +55,17 @@ jobs:
         env:
           PGPASSWORD: ${{ env.POSTGRES_PASSWORD }}
 
+      - name: Start Flask server
+        run: |
+          python -m src.server &
+
+      - name: Wait for Flask server
+        run: |
+          until curl -f http://127.0.0.1:5000/health; do
+            echo "Waiting for Flask..."
+            sleep 2
+          done
+
       - name: Run tests
         run: |
           python -m unittest discover -s tests -p "test_*.py"
