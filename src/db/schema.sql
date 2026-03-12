@@ -22,13 +22,13 @@ CREATE TABLE items (
 );
 
 CREATE TABLE inventory (
-    item_id INTEGER PRIMARY KEY REFERENCES items(id) ON DELETE CASCADE,
+    item_id INTEGER PRIMARY KEY REFERENCES items(id),
     quantity INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE needs (
     id SERIAL PRIMARY KEY,
-    item_id INTEGER NOT NULL UNIQUE REFERENCES items(id) ON DELETE CASCADE,
+    item_id INTEGER NOT NULL UNIQUE REFERENCES items(id),
     desired_quantity INTEGER NOT NULL,
     notes TEXT,
     is_active BOOLEAN NOT NULL DEFAULT TRUE
@@ -43,7 +43,7 @@ CREATE TABLE donations (
 
 CREATE TABLE donation_items (
     id SERIAL PRIMARY KEY,
-    donation_id INTEGER NOT NULL REFERENCES donations(id) ON DELETE CASCADE,
+    donation_id INTEGER NOT NULL REFERENCES donations(id),
     item_id INTEGER NOT NULL REFERENCES items(id),
     quantity INTEGER NOT NULL
 );
