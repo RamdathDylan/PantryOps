@@ -23,7 +23,7 @@ CREATE TABLE items (
 
 CREATE TABLE inventory (
     item_id INTEGER PRIMARY KEY REFERENCES items(id) ON DELETE CASCADE,
-    quantity INTEGER NOT NULL DEFAULT 0,
+    quantity INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE needs (
