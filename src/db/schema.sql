@@ -1,10 +1,9 @@
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS items;
-DROP TABLE IF EXISTS inventory;
-DROP TABLE IF EXISTS needs;
-DROP TABLE IF EXISTS donations;
 DROP TABLE IF EXISTS donation_items;
-
+DROP TABLE IF EXISTS donations;
+DROP TABLE IF EXISTS needs;
+DROP TABLE IF EXISTS inventory;
+DROP TABLE IF EXISTS items;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
@@ -22,14 +21,14 @@ CREATE TABLE items (
 );
 
 CREATE TABLE inventory (
-    item_id INTEGER PRIMARY KEY REFERENCES items(id),
-    quantity INTEGER NOT NULL DEFAULT 0
+    item_id INTEGER PRIMARY KEY REFERENCES items(id) ON DELETE CASCADE,
+    quantity INTEGER NOT NULL DEFAULT 0 CHECK (quantity >= 0)
 );
 
 CREATE TABLE needs (
     id SERIAL PRIMARY KEY,
-    item_id INTEGER NOT NULL UNIQUE REFERENCES items(id),
-    desired_quantity INTEGER NOT NULL,
+    item_id INTEGER NOT NULL UNIQUE REFERENCES items(id) ON DELETE CASCADE,
+    desired_quantity INTEGER NOT NULL CHECK (desired_quantity >= 0),
     notes TEXT,
     is_active BOOLEAN NOT NULL DEFAULT TRUE
 );
@@ -43,7 +42,7 @@ CREATE TABLE donations (
 
 CREATE TABLE donation_items (
     id SERIAL PRIMARY KEY,
-    donation_id INTEGER NOT NULL REFERENCES donations(id),
-    item_id INTEGER NOT NULL REFERENCES items(id),
-    quantity INTEGER NOT NULL
+    donation_id INTEGER NOT NULL REFERENCES donations(id) ON DELETE CASCADE,
+    item_id INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
+    quantity INTEGER NOT NULL CHECK (quantity > 0)
 );
