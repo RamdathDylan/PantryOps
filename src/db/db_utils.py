@@ -31,3 +31,15 @@ def exec_get_one(sql, params=None):
         with conn.cursor() as cur:
             cur.execute(sql, params)
             return cur.fetchone()
+        
+def exec_get_all(sql, params=None):
+    with get_conn() as conn:
+        with conn.cursor() as cur:
+            cur.execute(sql, params)
+            return cur.fetchall()
+        
+def exec_commit(sql, params=None):
+    with get_conn() as conn:
+        with conn.cursor() as cur:
+            cur.execute(sql, params)
+            conn.commit()
