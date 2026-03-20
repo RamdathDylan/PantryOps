@@ -40,3 +40,22 @@ def get_item(item_id):
     return exec_get_one(sql, (item_id,))
 
 
+def get_item_by_name(name):
+    """
+    Queries the database and returns the record with the matching 
+    name in the items table.
+
+    Keyword Arguments:
+    name - The name of the item that is being queried.
+
+    Return:
+    Tuple or none if record not found.
+    """
+
+    sql = """
+    SELECT id, name, category, unit, description
+    FROM items
+    WHERE name=%s
+    """
+
+    return exec_get_one(sql, (name,))
